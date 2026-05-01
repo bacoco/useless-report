@@ -30,16 +30,31 @@ The skill reads `.useless-report/config.yml` at the root of the current project.
 
 period: 7d          # default reporting period: 7d, 14d, sprint, month
 
+# Profil de l'utilisateur — comment TU communiques
+user:
+  name: "[Ton prénom]"
+  role: "[Ton titre]"
+  style: assertive          # assertive | diplomatic | data-driven | storyteller | minimalist
+  tone: confident           # confident | humble | collaborative | direct
+  strengths:
+    - "delivery track record"
+    - "technical depth"
+  modes:
+    status_update: "data-first, let numbers speak"
+    pitch:         "hook → problem → solution → ask"
+    bad_news:      "solution-first, context second, timeline always"
+    escalation:    "ask-first, urgency clear, specific action"
+
 managers:
   - name: "Alice"                     # libre — used in filenames and summaries
     profile: control_oriented         # archetype (see list below)
     notes: "Veut des options et de la traçabilité. Déteste les surprises."
-    formats: [html, email]            # formats à générer pour ce manager
+    formats: [html, email, qa]        # formats à générer pour ce manager
 
   - name: "Bob"
     profile: risk_sensitive
     notes: "Focus risques, délais, budget. Bulletpoints uniquement."
-    formats: [slides]
+    formats: [slides, call_prep]
 
   # Ajouter autant de managers que nécessaire
 ```
@@ -52,7 +67,7 @@ Si le fichier n'existe pas, le skill le crée à la première exécution (voir S
 
 ## How to use
 
-### Step 1 — Charger la config projet
+### Step 1 — Charger la config projet + vérifier le persona utilisateur
 
 Chercher `.useless-report/config.yml` à la racine du projet courant.
 
@@ -61,14 +76,23 @@ Chercher `.useless-report/config.yml` à la racine du projet courant.
 **Si absent :** c'est la première exécution. Poser ces questions une seule fois :
 
 1. **Période par défaut** (default: `7d`)
-2. **Combien de managers ?** → pour chacun :
+2. **Profil utilisateur** (une fois pour toutes) :
+   - Nom, rôle, style de communication (assertive / diplomatic / data-driven / storyteller / minimalist)
+3. **Combien de managers ?** → pour chacun :
    - Nom (libre)
    - Profil archétype — si inconnu, proposer `useless-report:classify-manager-style`
-   - Formats souhaités
+   - Formats souhaités (html, email, slides, qa, call_prep)
    - Notes optionnelles sur ses préférences
-3. **Format de sortie global** si pas spécifié par manager
+4. **Format de sortie global** si pas spécifié par manager
 
 Puis créer `.useless-report/config.yml` et confirmer : *"Config sauvegardée → .useless-report/config.yml. Les prochaines exécutions seront silencieuses."*
+
+### Step 1b — Historique (automatique)
+
+Invoquer `useless-report:track-history` en mode silencieux :
+- Charger les requêtes ouvertes du manager depuis le run précédent
+- Préparer le delta (what changed since last time)
+- Ces données s'injectent dans le rapport généré à l'étape 4
 
 ### Step 2 — Ingérer le codebase
 
@@ -108,7 +132,14 @@ Pour **chaque manager** dans `config.yml`, dans l'ordre :
 | `ambiguity_tolerant` | `useless-report:generate-ambiguity-tolerant-update` |
 | `synchronous_first` | `useless-report:generate-synchronous-first-update` |
 
-2. Pour chaque format demandé dans `manager.formats`, invoquer le skill correspondant sur le markdown généré.
+2. Pour chaque format demandé dans `manager.formats`, invoquer le skill correspondant sur le markdown généré :
+   - `html` → `useless-report:format-as-html`
+   - `email` → `useless-report:format-as-email`
+   - `slides` → `useless-report:format-as-slides`
+   - `qa` → `useless-report:format-as-qa`
+   - `call_prep` → `useless-report:format-as-call-prep`
+
+3. Après chaque rapport généré, invoquer `useless-report:track-history` pour sauvegarder le snapshot et mettre à jour les requêtes ouvertes du manager.
 
 **Convention de nommage des fichiers :**
 ```

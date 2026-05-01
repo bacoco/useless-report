@@ -1,7 +1,7 @@
 {
   "name": "useless-report",
-  "description": "The upward-compiler — reads your git history, PRs, and tickets, then generates a manager-adapted report as markdown, HTML, email, or slides. 10 communication archetypes. Because 'quick update?' never means quick.",
-  "version": "2.1.0",
+  "description": "The upward-compiler — reads your git history, PRs, and tickets, then generates manager-adapted reports, Q&A prep, call scripts, and tracks your history. 10 archetypes, 6 formats, 1 command.",
+  "version": "2.2.0",
   "author": {
     "name": "Bacoco",
     "email": "baconnier@gmail.com"
@@ -11,8 +11,10 @@
     { "name": "ingest-from-git",                    "path": "skills/ingest-from-git/SKILL.md" },
     { "name": "ingest-from-github",                 "path": "skills/ingest-from-github/SKILL.md" },
     { "name": "ingest-from-tickets",                "path": "skills/ingest-from-tickets/SKILL.md" },
+    { "name": "track-history",                      "path": "skills/track-history/SKILL.md",
+      "description": "Persiste l'historique des reports, trace les demandes ouvertes du manager, génère un delta depuis le dernier report." },
     { "name": "generate-design",                    "path": "skills/generate-design/SKILL.md",
-      "description": "Génère ou valide un fichier DESIGN.md (standard Google Labs) à partir de la charte visuelle de l'entreprise. Accepte : URL, CSS/SCSS, screenshot, description textuelle, ou rien." },
+      "description": "Génère ou valide un fichier DESIGN.md (standard Google Labs) à partir de la charte visuelle de l'entreprise." },
     { "name": "generate-control-report",            "path": "skills/generate-control-report/SKILL.md" },
     { "name": "generate-risk-report",               "path": "skills/generate-risk-report/SKILL.md" },
     { "name": "generate-process-report",            "path": "skills/generate-process-report/SKILL.md" },
@@ -25,10 +27,14 @@
     { "name": "generate-synchronous-first-update",  "path": "skills/generate-synchronous-first-update/SKILL.md" },
     { "name": "format-as-html",                     "path": "skills/format-as-html/SKILL.md" },
     { "name": "format-as-email",                    "path": "skills/format-as-email/SKILL.md",
-      "description": "Convertit un rapport markdown en HTML email-safe avec CSS entièrement inliné — compatible Gmail, Outlook, Apple Mail. Couleurs et typos issues du DESIGN.md." },
+      "description": "HTML email-safe avec CSS entièrement inliné — compatible Gmail, Outlook, Apple Mail." },
     { "name": "format-as-slides",                   "path": "skills/format-as-slides/SKILL.md" },
+    { "name": "format-as-qa",                       "path": "skills/format-as-qa/SKILL.md",
+      "description": "Génère un document Q&A de préparation de réunion — toutes les questions que le manager va poser, avec les réponses préparées. HTML collapsible, mobile-first." },
+    { "name": "format-as-call-prep",                "path": "skills/format-as-call-prep/SKILL.md",
+      "description": "Génère des talking points naturels pour un appel — adaptés au persona utilisateur et à l'archétype manager. Modes : status, pitch, bad news, escalation." },
     { "name": "setup-github-action",                "path": "skills/setup-github-action/SKILL.md",
-      "description": "Installe une GitHub Action qui génère automatiquement un commentaire useless-report adapté au profil manager sur chaque Pull Request." },
+      "description": "Installe une GitHub Action qui génère automatiquement un commentaire useless-report sur chaque PR." },
     { "name": "weekly-report",                      "path": "skills/weekly-report/SKILL.md" }
   ]
 }

@@ -13,7 +13,7 @@
 </p>
 
 <p align="center">
-  <a href="#get-started">Get started</a> · <a href="#how-it-works">How it works</a> · <a href="#the-10-archetypes">Archetypes</a> · <a href="#formats">Formats</a>
+  <a href="#get-started">Get started</a> · <a href="#how-it-works">How it works</a> · <a href="#the-10-archetypes">Archetypes</a> · <a href="#formats">Formats</a> · <a href="#before-the-meeting">Before the meeting</a>
 </p>
 
 ---
@@ -26,6 +26,8 @@ Then someone asked for "a quick update" — and you spent two hours writing a re
 
 **Same week. Ten different managers. Ten different expectations.**
 
+Then came the meeting. They asked questions you didn't see coming. You had the data. You just didn't have it in the right shape for that room.
+
 ---
 
 ## The fix
@@ -34,24 +36,29 @@ useless-report reads your codebase — commits, PRs, tickets — and writes the 
 
 Not a summary. Not a template. A report adapted to how your manager thinks, decides, and worries.
 
+The report. The Q&A. The call script. All from the same source.
+
 > *"Different style. Same truth."*
 
 ---
 
 ## One command
 
-```
-/useless-report:weekly-report
-```
+In Claude Code, just say it:
+
+> *"Generate my weekly report for Alice"*
 
 Set up once. Run forever. No questions after the first time.
 
 ```
 ✓ 23 commits · 5 PRs · 3 tickets ingested
 ✓ Brand identity loaded from DESIGN.md
-→ alice-control.html       (HTML, branded)
-→ alice-control-email.html (email-safe, inline CSS)
-→ bob-risk-deck.md         (Marp slides → PDF)
+→ alice-control.html           (HTML, branded)
+→ alice-control-email.html     (email-safe, inline CSS)
+→ alice-qa.html                (Q&A — every question she'll ask)
+→ alice-call-prep.md           (talking points for the call)
+→ History saved · 2 open requests tracked from last week
+→ bob-risk-deck.md             (Marp slides → PDF)
 ```
 
 ---
@@ -89,11 +96,11 @@ The report they'll actually read.<br/>Adapted tone, structure,<br/>and level of 
 </td>
 <td width="25%" align="center">
 
-**④ Render**
+**④ Deliver**
 
-HTML. Email. Slides.<br/>Your company's brand.<br/>One file. No dependencies.
+Report. Q&A. Call prep.<br/>Your brand. Your voice.<br/>One run.
 
-*Ready to send.*
+*Ready for anything.*
 
 </td>
 </tr>
@@ -118,11 +125,9 @@ Every manager has a pattern. Pick theirs — or let useless-report figure it out
 | 🌊 | **Ambiguity-tolerant** | *"Yeah just run with it"* |
 | 📞 | **Synchronous-first** | *"Let's jump on a quick call"* |
 
-Don't know which fits? Paste three of their messages:
+Don't know which fits? Just ask:
 
-```
-/useless-report:classify-manager-style
-```
+> *"Help me figure out my manager's communication style"*
 
 ---
 
@@ -167,21 +172,65 @@ Visual identity driven by your `DESIGN.md` — the [Google Labs open standard](h
 
 ---
 
+## Before the meeting
+
+The report gets you through the week. These get you through the room.
+
+<table>
+<tr>
+<td align="center" width="33%">
+
+**Q&A Prep**
+
+Every question they'll ask.<br/>Answers ready.<br/>Danger zones flagged.
+
+*Read it on your phone.<br/>Walk in confident.*
+
+</td>
+<td align="center" width="33%">
+
+**Call Prep**
+
+Your words.<br/>Their language.<br/>Your style.
+
+*Not a script.<br/>A guide that sounds like you.*
+
+</td>
+<td align="center" width="33%">
+
+**History**
+
+What you promised.<br/>What they asked.<br/>What changed.
+
+*Never lose track<br/>of an open request again.*
+
+</td>
+</tr>
+</table>
+
+Just ask:
+
+> *"Prepare my Q&A for tomorrow's meeting with Alice"*
+> *"I have a call with Bob in 20 minutes, help me prepare"*
+> *"What did Alice ask me to do last week that's still open?"*
+
+---
+
 ## Get started
 
-**Install** the plugin in Claude Code, then from inside any git repo:
+**Install** — in Claude Code, say:
 
-```
-/useless-report:weekly-report
-```
+> *"Install the plugin from github.com/bacoco/useless-report"*
 
-First run takes 60 seconds to set up. Every run after: instant.
+**First run** — from inside any git repo, say:
 
-**Set up CI** (auto-comment on every PR):
+> *"Generate my weekly report"*
 
-```
-/useless-report:setup-github-action
-```
+60 seconds to set up. Instant every time after.
+
+**Set up CI** — auto-comment on every PR:
+
+> *"Set up the GitHub Action for useless-report in this repo"*
 
 ---
 

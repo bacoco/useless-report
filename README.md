@@ -1,10 +1,5 @@
 <p align="center">
-  <img src="assets/images/carousel-4.png" width="49%" alt="From commits to manager-ready clarity"/>
-  <img src="assets/images/carousel-2.png" width="49%" alt="For the managers who just need visibility"/>
-</p>
-<p align="center">
-  <img src="assets/images/carousel-1.png" width="49%" alt="One source of truth. Every management style."/>
-  <img src="assets/images/carousel-3.png" width="49%" alt="Compile your work into manager-ready communication"/>
+  <img src="assets/images/carousel.gif" width="100%" alt="useless-report — carousel"/>
 </p>
 
 ---

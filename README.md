@@ -1,3 +1,14 @@
+<p align="center">
+  <img src="assets/images/carousel-4.png" width="49%" alt="From commits to manager-ready clarity"/>
+  <img src="assets/images/carousel-2.png" width="49%" alt="For the managers who just need visibility"/>
+</p>
+<p align="center">
+  <img src="assets/images/carousel-1.png" width="49%" alt="One source of truth. Every management style."/>
+  <img src="assets/images/carousel-3.png" width="49%" alt="Compile your work into manager-ready communication"/>
+</p>
+
+---
+
 # useless-report
 
 ### the upward-compiler
@@ -18,15 +29,16 @@ Most reporting tools answer: **What happened?**
 
 useless-report answers: **How should this be communicated to *this specific person*?**
 
-It reads your real engineering activity — git history, PRs, tickets — and turns it into a manager-adapted report. Same work, different format, depending on who's reading it. Output as markdown, polished HTML, or slides.
+It reads your real engineering activity — git history, PRs, tickets — and turns it into a manager-adapted report. Same work, different format, depending on who's reading it. Output as markdown, polished HTML, email-ready, or slides.
 
 | Existing tools | useless-report |
 |---|---|
 | Generate status reports | Generates *audience-adapted* reports |
 | Summarize Git / Jira activity | Reframes work for the reader's decision style |
 | One generic output | Multiple psychological renderings |
-| Markdown only | Markdown, HTML, or slides |
+| Markdown only | Markdown, HTML, email, or slides |
 | Manual copy-paste | Reads your repo directly |
+| One boss | N managers, N reports, one command |
 
 ---
 
@@ -42,27 +54,41 @@ Like frontend rendering: same data model, different components, different output
 
 > Never fabricate. Expand only from facts.
 
-The style is adapted. The reality is not. Every sentence in the report must trace back to something real (a commit, a PR, a ticket, an explicit user statement). Verbosity is justified only when it serves the reader's need for context, control, traceability, or reassurance — not to fill space.
+The style is adapted. The reality is not. Every sentence in the report must trace back to something real (a commit, a PR, a ticket, an explicit user statement).
 
 ---
 
-## Quick start (v2)
+## Quick start
 
-From inside any git repo:
+Install in any git repo, then:
 
 ```
 /useless-report:weekly-report
 ```
 
-The orchestrator will:
+First run: configures your manager profiles once (saved to `.useless-report/config.yml`).
+Every run after: one command, zero questions — generates all reports for all managers.
 
-1. Read your git activity (last 7 days by default)
-2. Optionally pull GitHub PRs and ticket references
-3. Ask which manager archetype fits (or use a known profile)
-4. Generate the adapted report
-5. Render it as markdown, HTML, or slides
+```yaml
+# .useless-report/config.yml — edit freely
+period: 7d
 
-Done. One command, real data, no copy-paste.
+managers:
+  - name: "Alice"
+    profile: control_oriented
+    formats: [html, email]
+  - name: "Bob"
+    profile: risk_sensitive
+    formats: [slides]
+```
+
+Output:
+```
+useless-report/2026-05-01/
+  alice-control.html
+  alice-control-email.html
+  bob-risk-deck.md
+```
 
 ---
 
@@ -82,24 +108,28 @@ Done. One command, real data, no copy-paste.
               │
               ▼
    ┌──────────────────────────┐
-   │ generate-[archetype]-*   │   ← 10 archetypes available
+   │ generate-[archetype]-*   │   ← 10 archetypes × N managers
    └──────────┬───────────────┘
               │
               ▼
-   ┌────────────────────┐
-   │ format-as-html     │   ← polished, email-ready
-   │ format-as-slides   │   ← Marp deck → PDF / PPTX
-   │ (default markdown) │   ← Slack / GitHub / docs
-   └────────────────────┘
+   ┌────────────────────────┐
+   │ generate-design        │   ← reads DESIGN.md brand tokens
+   └──────────┬─────────────┘     or generates one from URL/CSS/screenshot
+              │
+              ▼
+   ┌───────────────────────┐
+   │ format-as-html        │   ← branded, email-ready
+   │ format-as-email       │   ← CSS inline, Gmail/Outlook safe
+   │ format-as-slides      │   ← Marp deck → PDF / PPTX
+   │ (default markdown)    │   ← Slack / GitHub / docs
+   └───────────────────────┘
 ```
-
-You can run the pipeline end-to-end via `weekly-report`, or invoke any individual skill manually.
 
 ---
 
 ## The 10 manager archetypes
 
-| Skill | Archetype | Funny alias |
+| Skill | Archetype | Alias |
 |---|---|---|
 | `generate-control-report` | Control-oriented | "Can you send me a quick detailed breakdown?" |
 | `generate-risk-report` | Risk-sensitive | "Are we sure about this?" |
@@ -116,10 +146,9 @@ Don't know which fits? Run `classify-manager-style` — paste a few of your mana
 
 ---
 
-## All skills
+## All skills (20)
 
-### Ingestion (read your repo)
-
+### Ingestion
 ```
 useless-report:ingest-from-git
 useless-report:ingest-from-github
@@ -127,13 +156,16 @@ useless-report:ingest-from-tickets
 ```
 
 ### Classification
-
 ```
 useless-report:classify-manager-style
 ```
 
-### Generation (10 archetype-specific reports)
+### Design
+```
+useless-report:generate-design        ← DESIGN.md from URL, CSS, screenshot, or nothing
+```
 
+### Generation (10 archetypes)
 ```
 useless-report:generate-control-report
 useless-report:generate-risk-report
@@ -148,36 +180,39 @@ useless-report:generate-synchronous-first-update
 ```
 
 ### Formatting
-
 ```
-useless-report:format-as-html
-useless-report:format-as-slides
+useless-report:format-as-html          ← branded HTML, DESIGN.md tokens
+useless-report:format-as-email         ← CSS inline, Gmail/Outlook safe
+useless-report:format-as-slides        ← Marp → PDF / PPTX
+```
+
+### CI
+```
+useless-report:setup-github-action     ← auto-comment on every PR
 ```
 
 ### Orchestration
-
 ```
-useless-report:weekly-report      ← end-to-end pipeline in one shot
+useless-report:weekly-report           ← full pipeline, one command
 ```
 
 ---
 
 ## Output formats
 
-| Format | When to use | Output file |
+| Format | When to use | Output |
 |---|---|---|
-| **Markdown** (default) | Slack, GitHub comment, internal docs, email body | `useless-report-[date].md` |
-| **HTML** (via `format-as-html`) | Polished email, share link, printable artifact | `useless-report-[date].html` |
-| **Slides** (via `format-as-slides`) | Steering committee, all-hands, exec presentations | `useless-report-deck-[date].md` (Marp) → render to PDF/PPTX |
+| **Markdown** | Slack, GitHub comment, docs | `useless-report-[date].md` |
+| **HTML** | Polished email, share link, print | `[manager]-[profile].html` |
+| **Email** | Copy-paste into Gmail/Outlook | `[manager]-[profile]-email.html` |
+| **Slides** | Steering committee, all-hands | `[manager]-[profile]-deck.md` → PDF/PPTX |
 
-All HTML output is **single-file, no external dependencies, no JavaScript** — works in any email client.
-Slides require [Marp CLI](https://github.com/marp-team/marp-cli) to render to PDF/PPTX.
+All HTML output is **single-file, no external dependencies, no JavaScript**.
+Visual identity driven by your project's `DESIGN.md` — [google-labs-code/design.md](https://github.com/google-labs-code/design.md) standard.
 
 ---
 
 ## Design principle
-
-This project does not claim employees should compensate for bad management forever. It helps reduce communication friction when direct structural change is not immediately available.
 
 > This is not a solution to bad management. It is a tactical tool for reducing noise while the real problems get addressed.
 

@@ -1,224 +1,200 @@
 <p align="center">
-  <img src="assets/images/carousel.gif" width="100%" alt="useless-report — carousel"/>
+  <img src="assets/images/carousel.gif" width="100%" alt="useless-report"/>
+</p>
+
+<h1 align="center">useless-report</h1>
+
+<p align="center">
+  <strong>Your work is real. Make sure it reads that way.</strong>
+</p>
+
+<p align="center">
+  One command. Your git history. Every manager, covered.
+</p>
+
+<p align="center">
+  <a href="#get-started">Get started</a> · <a href="#how-it-works">How it works</a> · <a href="#the-10-archetypes">Archetypes</a> · <a href="#formats">Formats</a>
 </p>
 
 ---
 
-# useless-report
+## The problem
 
-### the upward-compiler
+You shipped. You fixed. You unblocked three people and made a call that saved the quarter.
 
-*Because "quick update?" never means quick.*
+Then someone asked for "a quick update" — and you spent two hours writing a report nobody read the same way.
 
----
-
-Your commits say what changed.
-Your tickets say what moved.
-**useless-report** says it in the language your manager understands.
+**Same week. Ten different managers. Ten different expectations.**
 
 ---
 
-## What is this?
+## The fix
 
-Most reporting tools answer: **What happened?**
+useless-report reads your codebase — commits, PRs, tickets — and writes the report *they* want to read.
 
-useless-report answers: **How should this be communicated to *this specific person*?**
+Not a summary. Not a template. A report adapted to how your manager thinks, decides, and worries.
 
-It reads your real engineering activity — git history, PRs, tickets — and turns it into a manager-adapted report. Same work, different format, depending on who's reading it. Output as markdown, polished HTML, email-ready, or slides.
-
-| Existing tools | useless-report |
-|---|---|
-| Generate status reports | Generates *audience-adapted* reports |
-| Summarize Git / Jira activity | Reframes work for the reader's decision style |
-| One generic output | Multiple psychological renderings |
-| Markdown only | Markdown, HTML, email, or slides |
-| Manual copy-paste | Reads your repo directly |
-| One boss | N managers, N reports, one command |
+> *"Different style. Same truth."*
 
 ---
 
-## Two core concepts
-
-### Psychological rendering
-
-Same data. Different report. Adapted to the reader.
-
-Like frontend rendering: same data model, different components, different output depending on who's looking. Here: same engineering work, different format, adapted to the manager's decision style, anxiety level, and desired granularity.
-
-### Controlled verbosity
-
-> Never fabricate. Expand only from facts.
-
-The style is adapted. The reality is not. Every sentence in the report must trace back to something real (a commit, a PR, a ticket, an explicit user statement).
-
----
-
-## Quick start
-
-Install in any git repo, then:
+## One command
 
 ```
 /useless-report:weekly-report
 ```
 
-First run: configures your manager profiles once (saved to `.useless-report/config.yml`).
-Every run after: one command, zero questions — generates all reports for all managers.
+Set up once. Run forever. No questions after the first time.
 
-```yaml
-# .useless-report/config.yml — edit freely
-period: 7d
-
-managers:
-  - name: "Alice"
-    profile: control_oriented
-    formats: [html, email]
-  - name: "Bob"
-    profile: risk_sensitive
-    formats: [slides]
 ```
-
-Output:
-```
-useless-report/2026-05-01/
-  alice-control.html
-  alice-control-email.html
-  bob-risk-deck.md
+✓ 23 commits · 5 PRs · 3 tickets ingested
+✓ Brand identity loaded from DESIGN.md
+→ alice-control.html       (HTML, branded)
+→ alice-control-email.html (email-safe, inline CSS)
+→ bob-risk-deck.md         (Marp slides → PDF)
 ```
 
 ---
 
-## The pipeline
+## How it works
 
-```
-   ┌─────────────────────┐
-   │  ingest-from-git    │   ← reads git log of current repo
-   │  ingest-from-github │   ← gh CLI: PRs, issues, reviews
-   │  ingest-from-tickets│   ← extracts JIRA/Linear/GH refs
-   └──────────┬──────────┘
-              │
-              ▼
-   ┌─────────────────────────┐
-   │ classify-manager-style  │   ← optional: paste manager
-   └──────────┬──────────────┘     messages, get a profile
-              │
-              ▼
-   ┌──────────────────────────┐
-   │ generate-[archetype]-*   │   ← 10 archetypes × N managers
-   └──────────┬───────────────┘
-              │
-              ▼
-   ┌────────────────────────┐
-   │ generate-design        │   ← reads DESIGN.md brand tokens
-   └──────────┬─────────────┘     or generates one from URL/CSS/screenshot
-              │
-              ▼
-   ┌───────────────────────┐
-   │ format-as-html        │   ← branded, email-ready
-   │ format-as-email       │   ← CSS inline, Gmail/Outlook safe
-   │ format-as-slides      │   ← Marp deck → PDF / PPTX
-   │ (default markdown)    │   ← Slack / GitHub / docs
-   └───────────────────────┘
-```
+<table>
+<tr>
+<td width="25%" align="center">
+
+**① Read**
+
+Your git log.<br/>Your PRs.<br/>Your tickets.
+
+*Real data, nothing invented.*
+
+</td>
+<td width="25%" align="center">
+
+**② Understand**
+
+Who is reading this?<br/>What do they need?<br/>How do they decide?
+
+*10 manager archetypes.*
+
+</td>
+<td width="25%" align="center">
+
+**③ Generate**
+
+The report they'll actually read.<br/>Adapted tone, structure,<br/>and level of detail.
+
+*One fact base. N reports.*
+
+</td>
+<td width="25%" align="center">
+
+**④ Render**
+
+HTML. Email. Slides.<br/>Your company's brand.<br/>One file. No dependencies.
+
+*Ready to send.*
+
+</td>
+</tr>
+</table>
 
 ---
 
-## The 10 manager archetypes
+## The 10 archetypes
 
-| Skill | Archetype | Alias |
+Every manager has a pattern. Pick theirs — or let useless-report figure it out.
+
+| | Archetype | What they always say |
 |---|---|---|
-| `generate-control-report` | Control-oriented | "Can you send me a quick detailed breakdown?" |
-| `generate-risk-report` | Risk-sensitive | "Are we sure about this?" |
-| `generate-process-report` | Process-heavy | "Is this in the tracking system?" |
-| `generate-stakeholder-brief` | Stakeholder-oriented | "How does this look to the steering committee?" |
-| `generate-low-context-digest` | Low-context | "Sorry, catching up — what did we decide?" |
-| `generate-volatile-priority-update` | Volatile-priority | "Actually, forget what I said last week" |
-| `generate-deadline-reactive-update` | Deadline-reactive | "We need this by tomorrow, right?" |
-| `generate-quality-maximalist-report` | Quality-maximalist | "Did we consider all the edge cases?" |
-| `generate-ambiguity-tolerant-update` | Ambiguity-tolerant | "Yeah just run with it" |
-| `generate-synchronous-first-update` | Synchronous-first | "Let's jump on a call about this" |
+| 🔬 | **Control-oriented** | *"Can you send a quick detailed breakdown?"* |
+| 🛡️ | **Risk-sensitive** | *"Are we sure about this?"* |
+| 📋 | **Process-heavy** | *"Is this in the tracking system?"* |
+| 🎭 | **Stakeholder-oriented** | *"How does this look to the committee?"* |
+| 🌀 | **Low-context** | *"Sorry catching up — what did we decide?"* |
+| 🎯 | **Volatile-priority** | *"Actually, forget what I said last week"* |
+| ⏰ | **Deadline-reactive** | *"We need this by tomorrow, right?"* |
+| 🔍 | **Quality-maximalist** | *"Did we consider all the edge cases?"* |
+| 🌊 | **Ambiguity-tolerant** | *"Yeah just run with it"* |
+| 📞 | **Synchronous-first** | *"Let's jump on a quick call"* |
 
-Don't know which fits? Run `classify-manager-style` — paste a few of your manager's messages and get a profile in seconds.
+Don't know which fits? Paste three of their messages:
 
----
-
-## All skills (20)
-
-### Ingestion
 ```
-useless-report:ingest-from-git
-useless-report:ingest-from-github
-useless-report:ingest-from-tickets
-```
-
-### Classification
-```
-useless-report:classify-manager-style
-```
-
-### Design
-```
-useless-report:generate-design        ← DESIGN.md from URL, CSS, screenshot, or nothing
-```
-
-### Generation (10 archetypes)
-```
-useless-report:generate-control-report
-useless-report:generate-risk-report
-useless-report:generate-process-report
-useless-report:generate-stakeholder-brief
-useless-report:generate-low-context-digest
-useless-report:generate-volatile-priority-update
-useless-report:generate-deadline-reactive-update
-useless-report:generate-quality-maximalist-report
-useless-report:generate-ambiguity-tolerant-update
-useless-report:generate-synchronous-first-update
-```
-
-### Formatting
-```
-useless-report:format-as-html          ← branded HTML, DESIGN.md tokens
-useless-report:format-as-email         ← CSS inline, Gmail/Outlook safe
-useless-report:format-as-slides        ← Marp → PDF / PPTX
-```
-
-### CI
-```
-useless-report:setup-github-action     ← auto-comment on every PR
-```
-
-### Orchestration
-```
-useless-report:weekly-report           ← full pipeline, one command
+/useless-report:classify-manager-style
 ```
 
 ---
 
-## Output formats
+## Formats
 
-| Format | When to use | Output |
-|---|---|---|
-| **Markdown** | Slack, GitHub comment, docs | `useless-report-[date].md` |
-| **HTML** | Polished email, share link, print | `[manager]-[profile].html` |
-| **Email** | Copy-paste into Gmail/Outlook | `[manager]-[profile]-email.html` |
-| **Slides** | Steering committee, all-hands | `[manager]-[profile]-deck.md` → PDF/PPTX |
+Every report, in the format they'll actually open.
 
-All HTML output is **single-file, no external dependencies, no JavaScript**.
-Visual identity driven by your project's `DESIGN.md` — [google-labs-code/design.md](https://github.com/google-labs-code/design.md) standard.
+<table>
+<tr>
+<td align="center" width="25%">
+
+**Markdown**
+
+Slack. GitHub.<br/>Notion. Docs.
+
+</td>
+<td align="center" width="25%">
+
+**HTML**
+
+One file.<br/>Your brand.<br/>Email-ready.
+
+</td>
+<td align="center" width="25%">
+
+**Email**
+
+Inline CSS.<br/>Gmail. Outlook.<br/>Copy-paste.
+
+</td>
+<td align="center" width="25%">
+
+**Slides**
+
+Marp deck.<br/>PDF or PPTX.<br/>Steering committee.
+
+</td>
+</tr>
+</table>
+
+Visual identity driven by your `DESIGN.md` — the [Google Labs open standard](https://github.com/google-labs-code/design.md) for brand tokens. Pass a URL, a CSS file, a screenshot, or nothing — useless-report handles it.
 
 ---
 
-## Design principle
+## Get started
 
-> This is not a solution to bad management. It is a tactical tool for reducing noise while the real problems get addressed.
+**Install** the plugin in Claude Code, then from inside any git repo:
 
-The profiles are not diagnoses. They are communication preference maps. The archetypes have funny aliases because the situations are genuinely absurd — but the tool treats people with respect.
+```
+/useless-report:weekly-report
+```
+
+First run takes 60 seconds to set up. Every run after: instant.
+
+**Set up CI** (auto-comment on every PR):
+
+```
+/useless-report:setup-github-action
+```
 
 ---
 
-## Part of the useless-skills family
+## The fine print
 
-→ [useless-roulette](https://github.com/bacoco/useless-skills) — absurd skills for Claude Code
+This is not a solution to bad management.
+
+It is a tactical tool for reducing communication friction while the real problems get addressed. The profiles are not diagnoses. The archetypes have funny aliases because the situations are genuinely absurd — but the tool treats everyone with respect.
+
+> *Work does not speak for itself. It has to be rendered for its audience.*
 
 ---
 
-*Work does not speak for itself. It has to be rendered for its audience.*
+<p align="center">
+  Part of the <a href="https://github.com/bacoco/useless-skills">useless-skills</a> family
+</p>

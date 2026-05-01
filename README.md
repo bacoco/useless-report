@@ -46,20 +46,28 @@ The report. The Q&A. The call script. All from the same source.
 
 In Claude Code, just say it:
 
-> *"Generate my weekly report for Alice"*
+> *"Generate my weekly report"*
 
 Set up once. Run forever. No questions after the first time.
 
-```
-✓ 23 commits · 5 PRs · 3 tickets ingested
-✓ Brand identity loaded from DESIGN.md
-→ alice-control.html           (HTML, branded)
-→ alice-control-email.html     (email-safe, inline CSS)
-→ alice-qa.html                (Q&A — every question she'll ask)
-→ alice-call-prep.md           (talking points for the call)
-→ History saved · 2 open requests tracked from last week
-→ bob-risk-deck.md             (Marp slides → PDF)
-```
+---
+
+**One week of work. One run. Everything ready.**
+
+For **Alice** — control-oriented
+- Branded HTML report, ready to forward
+- Email version, paste directly into Gmail
+- Q&A sheet — every question she'll ask, answered
+- Call guide — sounds like you, not a template
+
+For **Bob** — risk-sensitive
+- Slide deck, export to PDF in one command
+
+And in the background: history saved, open requests tracked.
+
+---
+
+*23 commits read. Nothing invented.*
 
 ---
 

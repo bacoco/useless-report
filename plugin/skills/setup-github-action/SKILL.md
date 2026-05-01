@@ -123,10 +123,11 @@ REPORT_LENGTH="${REPORT_LENGTH:-standard}"
 OUTPUT_FILE="/tmp/useless-report-comment.md"
 
 # Lire la config projet si elle existe
+# Utilise le profil du premier manager de la liste (format multi-managers)
 if [[ -f "$CONFIG_FILE" ]]; then
-  profile=$(grep 'manager_profile:' "$CONFIG_FILE" | awk '{print $2}' | tr -d '"')
+  profile=$(grep -A2 'managers:' "$CONFIG_FILE" | grep 'profile:' | head -1 | awk '{print $2}' | tr -d '"')
   [[ -n "$profile" ]] && MANAGER_PROFILE="$profile"
-  length=$(grep 'comment_length:' "$CONFIG_FILE" | awk '{print $2}' | tr -d '"')
+  length=$(grep 'ci_comment_length:' "$CONFIG_FILE" | awk '{print $2}' | tr -d '"')
   [[ -n "$length" ]] && REPORT_LENGTH="$length"
 fi
 
@@ -197,18 +198,28 @@ echo "$COMMENT" > "$OUTPUT_FILE"
 echo "Rapport généré → $OUTPUT_FILE"
 ```
 
-### Step 4 — Générer `.useless-report/config.yml`
+### Step 4 — Générer `.useless-report/config.yml` (si absent)
+
+Si `.useless-report/config.yml` existe déjà (créé par `weekly-report`), ne pas l'écraser — lire le premier manager de la liste comme profil CI par défaut.
+
+Si absent, créer :
 
 ```yaml
 # useless-report project configuration
-# Modifie ces valeurs pour personnaliser les rapports CI
+# Partagé entre weekly-report (local) et la GitHub Action (CI)
 
-manager_profile: control_oriented
-# Profils disponibles : control_oriented, risk_sensitive, process_heavy,
-# stakeholder_oriented, low_context, volatile_priority, deadline_reactive,
-# quality_maximalist, ambiguity_tolerant, synchronous_first
+period: 7d
 
-comment_length: standard
+managers:
+  - name: "Manager"
+    profile: control_oriented
+    # Profils : control_oriented · risk_sensitive · process_heavy · stakeholder_oriented
+    #           low_context · volatile_priority · deadline_reactive · quality_maximalist
+    #           ambiguity_tolerant · synchronous_first
+    formats: [html, email]
+
+# Longueur du commentaire PR (CI uniquement)
+ci_comment_length: standard
 # Valeurs : short | standard | minimal
 ```
 

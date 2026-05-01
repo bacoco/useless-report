@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/images/carousel.gif" width="100%" alt="useless-report"/>
+  <img src="assets/images/hero.png" width="100%" alt="useless-report — You ship. We report."/>
 </p>
 
 <h1 align="center">useless-report</h1>
@@ -39,6 +39,10 @@ Not a summary. Not a template. A report adapted to how your manager thinks, deci
 The report. The Q&A. The call script. All from the same source.
 
 > *"Different style. Same truth."*
+
+<p align="center">
+  <img src="assets/images/carousel.gif" width="100%" alt="useless-report in action"/>
+</p>
 
 ---
 

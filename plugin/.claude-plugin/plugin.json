@@ -1,0 +1,34 @@
+{
+  "name": "useless-report",
+  "description": "The upward-compiler — reads your git history, PRs, and tickets, then generates a manager-adapted report as markdown, HTML, email, or slides. 10 communication archetypes. Because 'quick update?' never means quick.",
+  "version": "2.1.0",
+  "author": {
+    "name": "Bacoco",
+    "email": "baconnier@gmail.com"
+  },
+  "skills": [
+    { "name": "classify-manager-style",             "path": "skills/classify-manager-style/SKILL.md" },
+    { "name": "ingest-from-git",                    "path": "skills/ingest-from-git/SKILL.md" },
+    { "name": "ingest-from-github",                 "path": "skills/ingest-from-github/SKILL.md" },
+    { "name": "ingest-from-tickets",                "path": "skills/ingest-from-tickets/SKILL.md" },
+    { "name": "generate-design",                    "path": "skills/generate-design/SKILL.md",
+      "description": "Génère ou valide un fichier DESIGN.md (standard Google Labs) à partir de la charte visuelle de l'entreprise. Accepte : URL, CSS/SCSS, screenshot, description textuelle, ou rien." },
+    { "name": "generate-control-report",            "path": "skills/generate-control-report/SKILL.md" },
+    { "name": "generate-risk-report",               "path": "skills/generate-risk-report/SKILL.md" },
+    { "name": "generate-process-report",            "path": "skills/generate-process-report/SKILL.md" },
+    { "name": "generate-stakeholder-brief",         "path": "skills/generate-stakeholder-brief/SKILL.md" },
+    { "name": "generate-low-context-digest",        "path": "skills/generate-low-context-digest/SKILL.md" },
+    { "name": "generate-volatile-priority-update",  "path": "skills/generate-volatile-priority-update/SKILL.md" },
+    { "name": "generate-deadline-reactive-update",  "path": "skills/generate-deadline-reactive-update/SKILL.md" },
+    { "name": "generate-quality-maximalist-report", "path": "skills/generate-quality-maximalist-report/SKILL.md" },
+    { "name": "generate-ambiguity-tolerant-update", "path": "skills/generate-ambiguity-tolerant-update/SKILL.md" },
+    { "name": "generate-synchronous-first-update",  "path": "skills/generate-synchronous-first-update/SKILL.md" },
+    { "name": "format-as-html",                     "path": "skills/format-as-html/SKILL.md" },
+    { "name": "format-as-email",                    "path": "skills/format-as-email/SKILL.md",
+      "description": "Convertit un rapport markdown en HTML email-safe avec CSS entièrement inliné — compatible Gmail, Outlook, Apple Mail. Couleurs et typos issues du DESIGN.md." },
+    { "name": "format-as-slides",                   "path": "skills/format-as-slides/SKILL.md" },
+    { "name": "setup-github-action",                "path": "skills/setup-github-action/SKILL.md",
+      "description": "Installe une GitHub Action qui génère automatiquement un commentaire useless-report adapté au profil manager sur chaque Pull Request." },
+    { "name": "weekly-report",                      "path": "skills/weekly-report/SKILL.md" }
+  ]
+}

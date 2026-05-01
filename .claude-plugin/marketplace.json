@@ -1,0 +1,19 @@
+{
+  "name": "useless-report",
+  "owner": {
+    "name": "Bacoco",
+    "email": "baconnier@gmail.com"
+  },
+  "metadata": {
+    "description": "The upward-compiler. Reads your real engineering activity (git, PRs, tickets) and generates manager-adapted reports as markdown, HTML, or slides.",
+    "version": "2.0.0"
+  },
+  "plugins": [
+    {
+      "name": "useless-report",
+      "source": "./plugin",
+      "description": "10 manager archetypes. 3 ingestion sources. 3 output formats. One classifier. Infinite patience.",
+      "version": "2.0.0"
+    }
+  ]
+}

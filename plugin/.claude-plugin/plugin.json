@@ -33,6 +33,8 @@
       "description": "Génère un document Q&A de préparation de réunion — toutes les questions que le manager va poser, avec les réponses préparées. HTML collapsible, mobile-first." },
     { "name": "format-as-call-prep",                "path": "skills/format-as-call-prep/SKILL.md",
       "description": "Génère des talking points naturels pour un appel — adaptés au persona utilisateur et à l'archétype manager. Modes : status, pitch, bad news, escalation." },
+    { "name": "generate-dev-change-report",         "path": "skills/generate-dev-change-report/SKILL.md",
+      "description": "Génère un report de dev depuis les modifications du repo, les screenshots sauvegardés, et les comparaisons avant/après." },
     { "name": "setup-github-action",                "path": "skills/setup-github-action/SKILL.md",
       "description": "Installe une GitHub Action qui génère automatiquement un commentaire useless-report sur chaque PR." },
     { "name": "weekly-report",                      "path": "skills/weekly-report/SKILL.md" }

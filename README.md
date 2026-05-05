@@ -228,6 +228,25 @@ Just ask:
 
 ---
 
+## Dev change reports
+
+Installed in any repo, useless-report can also render a developer change report from the work you just shipped:
+
+- changed files, commits, PR context, and validation
+- saved screenshots or ShipGuard visual artifacts
+- before/after screen comparisons when available
+- residual risks and next steps
+
+For visual before/after evidence, useless-report expects screenshots or ShipGuard artifacts to already exist. ShipGuard captures and compares the UI; useless-report renders the dev report from those artifacts.
+
+Just ask:
+
+> *"Generate a dev change report for this branch with the before/after screenshots"*
+
+The output can stay as Markdown or flow through the same HTML, email, slides, Q&A, and call-prep formats.
+
+---
+
 ## Get started
 
 **Install** — in Claude Code, say:
